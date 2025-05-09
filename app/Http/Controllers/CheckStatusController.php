@@ -20,17 +20,17 @@ class CheckStatusController extends Controller
         try{
             $data = [];
 
-        $patient = Patient::where('number', $number)->first();
+            $patient = Patient::where('number', $number)->first();
 
-        if($patient?->count() > 0){
-            $data = [
-                'message' => 'patient found',
-                'name'=> $patient->name,
-                'city'=> $patient->brgy->city->name,
-                'brgy' => $patient->brgy->name,
-                'case_type' => $patient->case_type->value,
-                'coronavirus_status' => $patient->coronavirus_status?->value,                
-            ];
+            if($patient?->count() > 0){
+                $data = [
+                    'message' => 'patient found',
+                    'name'=> $patient->name,
+                    'city'=> $patient->brgy->city->name,
+                    'brgy' => $patient->brgy->name,
+                    'case_type' => $patient->case_type->value,
+                    'coronavirus_status' => $patient->coronavirus_status?->value,                
+                ];
             
             return $data;
         }

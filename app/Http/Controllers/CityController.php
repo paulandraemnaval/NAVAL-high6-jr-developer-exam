@@ -12,7 +12,7 @@ class CityController extends Controller
     //
     public function index(){
         try{
-                    $cities = City::all();
+            $cities = City::all();
 
         return view('cities.index', ['cities' => $cities]);
 
@@ -31,9 +31,9 @@ class CityController extends Controller
 
     public function store(CityRequest $request){
         try{
-                $data =$request->validated();
+            $data =$request->validated();
 
-        City::create($data);
+            City::create($data);
 
         return redirect(route('cities.index'))->with('success','city created successfully');
     
@@ -44,8 +44,8 @@ class CityController extends Controller
 
     public function show(City $city){
         try{
-                 $cleanedData = new CityResource($city);
-        return view('cities.show', ['city'=> $cleanedData]);
+            $cleanedData = new CityResource($city);
+            return view('cities.show', ['city'=> $cleanedData]);
    
         }catch(\Exception $e){
             return back()->with('error', $e->getMessage());
@@ -77,8 +77,8 @@ class CityController extends Controller
 
     public function destroy(City $city){
         try{
-                 $city->delete();
-        return redirect(route('cities.index'))->with('success','city deleted successfully');
+            $city->delete();
+            return redirect(route('cities.index'))->with('success','city deleted successfully');
    
         }catch(\Exception $e){
             return back()->with('error', $e->getMessage());

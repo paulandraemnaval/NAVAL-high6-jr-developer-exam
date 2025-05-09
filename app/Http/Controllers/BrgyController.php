@@ -34,8 +34,7 @@ class BrgyController extends Controller
 
     public function store(BrgyRequest $request){
         try{
-                $validatedData = $request->validated();
-
+            $validatedData = $request->validated();
         Brgy::create($validatedData);
 
         return redirect()->route('brgys.index')->with('success','brgy created successfully');
@@ -47,10 +46,10 @@ class BrgyController extends Controller
 
     public function show(Brgy $brgy){
         try{
-                    $city = City::find($brgy->id);
-        $cleanedCity = new CityResource($city);
-        $cleanedBrgy = new BrgyResource($brgy);  
-        return view('brgys.show', ['city'=> $cleanedCity, 'brgy' => $cleanedBrgy]);
+            $city = City::find($brgy->id);
+            $cleanedCity = new CityResource($city);
+            $cleanedBrgy = new BrgyResource($brgy);  
+            return view('brgys.show', ['city'=> $cleanedCity, 'brgy' => $cleanedBrgy]);
 
         }catch(\Exception $e){
             return back()->with('error', $e->getMessage());
@@ -59,8 +58,8 @@ class BrgyController extends Controller
 
     public function edit(Brgy $brgy){
         try{
-                $cities = City::all();
-        return view('brgys.edit', ['cities'=> $cities,'brgy'=> $brgy]);
+            $cities = City::all();
+            return view('brgys.edit', ['cities'=> $cities,'brgy'=> $brgy]);
     
         }catch(\Exception $e){
             return back()->with('error', $e->getMessage());
@@ -69,9 +68,9 @@ class BrgyController extends Controller
 
     public function update(BrgyRequest $request, Brgy $brgy){
         try{
-                  $validatedData = $request->validated($request);
-        $brgy->update($validatedData);
-        return redirect()->route('brgys.index')->with('success','brgy edited successfully');
+            $validatedData = $request->validated();
+            $brgy->update($validatedData);
+            return redirect()->route('brgys.index')->with('success','brgy edited successfully');
   
         }catch(\Exception $e){
             return back()->with('error', $e->getMessage());
@@ -80,8 +79,8 @@ class BrgyController extends Controller
 
     public function destroy(Brgy $brgy){
         try{
-                   $brgy->delete();
-        return redirect()->route('brgys.index')->with('success','brgy deleted successfully');
+            $brgy->delete();
+            return redirect()->route('brgys.index')->with('success','brgy deleted successfully');
  
         }catch(\Exception $e){
             return back()->with('error', $e->getMessage());

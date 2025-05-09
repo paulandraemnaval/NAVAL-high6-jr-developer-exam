@@ -13,7 +13,7 @@ class VirusReportController extends Controller
     public function index()
     {
     try{
-            $cities = City::all();
+        $cities = City::all();
         return view('virusreports.index', compact('cities'));
     
     }catch(\Exception $e){

@@ -40,8 +40,8 @@ class PatientController extends Controller
 
     public function store(PatientRequest $request){
         try{
-                   $validatedData = $request->validated();
-        Patient::create($validatedData);
+            $validatedData = $request->validated();
+            Patient::create($validatedData);
         return redirect()->route('patients.index')->with('success','patient created successfully');
  
         }catch(\Exception $e){
@@ -53,7 +53,7 @@ class PatientController extends Controller
     public function show(Patient $patient){
 
         try{
-                    $cleanedPatient = new PatientResource($patient);
+            $cleanedPatient = new PatientResource($patient);
 
         return view('patients.show', compact('cleanedPatient'));
         }catch(\Exception $e){
@@ -73,11 +73,9 @@ class PatientController extends Controller
 
     public function update(PatientRequest $request, Patient $patient){
         try{
-                 $validatedData = $request->validated();
-
-        
-        $patient->update($validatedData);
-        return redirect()->route('patients.index')->with('success','patient data edited successfully');
+            $validatedData = $request->validated();
+            $patient->update($validatedData);
+            return redirect()->route('patients.index')->with('success','patient data edited successfully');
    
         }catch(\Exception $e){
             return redirect()->back()->with('error', $e->getMessage());
@@ -86,7 +84,7 @@ class PatientController extends Controller
 
     public function destroy(Patient $patient){
     try{
-            $patient->delete();
+        $patient->delete();
         return redirect()->route('patients.index')->with('success','Patient deleted successfully');
     
     }catch(\Exception $e){
